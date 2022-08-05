@@ -1,12 +1,14 @@
 import psycopg2
-import glob
+import dotenv
+
+dotenv.load_dotenv()
 
 conn = psycopg2.connect(
     host="localhost",
     port='49153',
     database="project",
-    user="postgres",
-    password="postgrespw")
+    user=dotenv.dotenv_values()['DB_USER'],
+    password=dotenv.dotenv_values()['DB_PASSWORD'])
 
 cursor = conn.cursor()
 
